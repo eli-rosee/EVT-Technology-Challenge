@@ -1,8 +1,9 @@
 #!/bin/bash
 
-echo
+echo -e "\nTesting HTTP (hopefully redirected to HTTPS)...\n"
 curl -I http://localhost
-echo
+echo -e "\nTesting HTTPS...\n"
 curl -k -I https://localhost
-echo
+echo -e "\nTesting HTTPS with verbose output to view TLS handshake (ignore self-signed cert warning)...\n"
 curl -v https://localhost
+echo

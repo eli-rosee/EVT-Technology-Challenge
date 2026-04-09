@@ -18,7 +18,7 @@ if [ -z "$(docker ps -a -q -f name=awesome-server)" ]; then
 
     echo -e "Starting container...\n"
     docker run -d -p 80:80 -p 443:443 --name awesome-server localhost-server:1.0
-    echo -e "\nSuccess! Server started: https://localhost\n"
+    echo -e "\nSuccess! Server started at https://localhost\n"
 else
     echo "ERROR. Server Already Running."
 fi
