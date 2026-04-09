@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo
 curl -I http://localhost
 echo
