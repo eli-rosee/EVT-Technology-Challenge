@@ -1,15 +1,12 @@
 FROM nginx:stable
 
-WORKDIR /usr/share/nginx/html
-COPY resources/index.html ./
+COPY resources/index.html /usr/share/nginx/html/
 
-WORKDIR /etc/nginx/
-RUN rm nginx.conf
-COPY configs/nginx.conf ./
+COPY configs/nginx.conf /etc/nginx/nginx.conf
 
-RUN mkdir certs
-COPY certs/server.key  ./certs/
-COPY certs/server.crt ./certs/
+RUN mkdir /etc/nginx/certs
+COPY certs/server.key /etc/nginx/certs/server.key
+COPY certs/server.crt /etc/nginx/certs/server.crt
 
 EXPOSE 443 80
 
