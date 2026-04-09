@@ -7,6 +7,10 @@ WORKDIR /etc/nginx/
 RUN rm nginx.conf
 COPY configs/nginx.conf ./
 
+RUN mkdir certs
+COPY certs/server.key  ./certs/
+COPY certs/server.crt ./certs/
+
 EXPOSE 443
 
 RUN service nginx start
