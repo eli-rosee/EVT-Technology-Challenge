@@ -11,6 +11,6 @@ RUN mkdir certs
 COPY certs/server.key  ./certs/
 COPY certs/server.crt ./certs/
 
-EXPOSE 443
+EXPOSE 443 80
 
-RUN service nginx start
+CMD ["nginx", "-g", "daemon off;"]
