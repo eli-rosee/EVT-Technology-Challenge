@@ -1,3 +1,4 @@
+# Base image with nginx pre-installed (pulled from Docker Hub)
 FROM nginx:stable
 
 # Copy webpage to container
@@ -11,7 +12,7 @@ RUN mkdir /etc/nginx/certs
 COPY certs/server.key /etc/nginx/certs/server.key
 COPY certs/server.crt /etc/nginx/certs/server.crt
 
-# Expose HTTP and HTTPS Port in the container
+# Expose HTTP and HTTPS Ports in the container
 EXPOSE 80 443
 
 # Run nginx command upon container run
