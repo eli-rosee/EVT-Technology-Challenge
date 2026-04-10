@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Checks if we can run Docker
+if ! docker info > /dev/null 2>&1; then
+    echo "ERROR: Cannot connect to Docker. Check README for troubleshooting."
+    exit 1
+fi
+
 if [ -z "$(docker ps -a -q -f name=awesome-server)" ]; then
     if [[ -f "../certs/server.key" && -f "../certs/server.crt" ]]; then
         echo -e "\nCertificate already exist, skipping generation.\n"
