@@ -88,6 +88,17 @@ When you run `setup.sh`, the following happens in sequence:
     - Copies the generated certificate and private key into the container
 4. **Container Launch**: Runs the built image as a background process with port mappings (80→80, 443→443) and names it `awesome-server`
 
+## Troubleshooting
+
+### Cannot connect to Docker
+
+Your user doesn't have Docker permissions. Adding yourself to the docker group requires `sudo` and logging back in, which is why it wasn't automated. Run these commands:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+./setup.sh
+```
 ## GitIgnore / Cert Generation
 The `certs/` directory is listed in `.gitignore` to prevent committing private keys to version control. Certificates are generated locally on the first run and reused across subsequent server spin-ups.
 
