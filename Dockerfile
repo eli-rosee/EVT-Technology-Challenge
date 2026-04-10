@@ -1,8 +1,8 @@
 # Base image with nginx pre-installed (pulled from Docker Hub)
 FROM nginx:stable
 
-# Copy webpage to container
-COPY resources/index.html /usr/share/nginx/html/
+# Copy webpage and video to container
+COPY resources/index.html resources/doom.mp4 /usr/share/nginx/html/
 
 # Copy nginx config to container
 COPY configs/nginx.conf /etc/nginx/nginx.conf

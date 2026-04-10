@@ -1,5 +1,5 @@
 <!-- Sample HTML provided by EVT for display on the eventual web server -->
-
+<!DOCTYPE html>
 <html>
   <head>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
@@ -37,11 +37,22 @@
         display: inline-block;
         margin: 0 auto;
       }
+      video {
+        margin-top: 80px;
+        border-radius: 10px;
+        max-width: 100%;
+        height: auto;
+      }
     </style>
     <body>
       </div>
         <h1>Success</h1> 
         <p>Your webpage is up and running</p>
+      </div>
+      <div>
+        <video width="300" autoplay loop muted title="Because you can run Doom on anything">
+          <source src="doom.mp4" type="video/mp4">
+        </video>
       </div>
     </body>
 </html>
