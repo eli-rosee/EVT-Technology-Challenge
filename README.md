@@ -36,10 +36,10 @@ cd scripts/
     └── server.crt
 ```
 ## Scripts Guide
-- **setup.sh** → Generates certs, builds image, runs container
-- **test.sh** → Verifies HTTP/HTTPS are functional
-- **logs.sh** → Debug the container
-- **shutdown.sh** → Clean teardown
+- **setup.sh** → Generates certs, builds Docker image, and runs container
+- **test.sh** → Verifies HTTP/HTTPS connectivity using curl
+- **logs.sh** → Streams container logs (live if running, static if stopped)
+- **shutdown.sh** → Stops and removes the running container 
 
 ## Tech Stack & Design Decisions
 
@@ -75,3 +75,21 @@ Bash scripts were chosen because the automation needed with this setup is simple
 - Docker image run
 
 This can easily be done using Bash. Configuration management tools like Ansible or Puppet are rendered unnecessary given the lack of dependencies needed.
+
+## How Setup Works
+
+When you run `setup.sh`, the following happens in sequence:
+
+1. **Certificate Check**: Verifies if `certs/server.key` and `certs/server.crt` exist
+2. **Certificate Generation**: If missing, runs OpenSSL with `openssl.conf` to generate a 365-day self-signed certificate for localhost
+3. **Docker Build**: Reads the Dockerfile and builds an image named `localhost-server:1.0`
+    - Copies `index.html` and `doom.mp4` to the container's web root
+    - Copies the nginx configuration (`nginx.conf`) to the container
+    - Copies the generated certificate and private key into the container
+4. **Container Launch**: Runs the built image as a background process with port mappings (80→80, 443→443) and names it `awesome-server`
+
+## GitIgnore / Cert Generation
+The `certs/` directory is listed in `.gitignore` to prevent committing private keys to version control. Certificates are generated locally on the first run and reused across subsequent server spin-ups.
+
+## Easter Egg
+The webpage includes a looping Doom video because, as the saying goes, you can run Doom on anything. Including webservers. And bacteria.
